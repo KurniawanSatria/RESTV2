@@ -1,0 +1,32 @@
+{
+  "name": "satzz_api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon src"
+  },
+  "keywords": [],
+  "author": "SatzzDev",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.6.2",
+    "cheerio": "^1.0.0-rc.12",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "form-data": "^4.0.1",
+    "fs": "^0.0.1-security",
+    "morgan": "^1.10.0",
+    "querystring": "^0.2.1",
+    "random-fake-useragent": "^0.1.0",
+    "ssl-express-www": "^3.2.1",
+    "yt-search": "^2.12.1",
+    "yt-stream": "^1.7.4"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.26.4",
+    "@babel/preset-env": "^7.26.0",
+    "nodemon": "^2.0.21"
+  }
+}
