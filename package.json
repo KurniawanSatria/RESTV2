@@ -6,7 +6,20 @@
   "scripts": {
     "dev": "nodemon src"
   },
-  "keywords": [],
+  "keywords": [
+  "rest api",
+  "bot whatsapp",
+  "satzdev",
+  "satzz",
+  "satganzdevs",
+  "kurniawan satria",
+  "rest api bot wa",
+  "wa bot",
+  "bot wa",
+  "satzzdev",
+  "SatzzDev",
+  "Satganz Devs"
+  ],
   "author": "SatzzDev",
   "license": "ISC",
   "dependencies": {
