@@ -5,80 +5,93 @@ const FormData = require('form-data');
 const yts = require("yt-search");
 
 //━━━━━━━━━━━━━━━[ AI ]━━━━━━━━━━━━━━━━━//
-async function chatGPT(text) {
-return new Promise(async (resolve, reject) => {
-try {
-const form = new FormData();
-form.append('_wpnonce', 'b56c11a9aa');
-form.append('post_id', '2');
-form.append('url', 'https://chatopenai.id');
-form.append('action', 'wpaicg_chat_shortcode_message');
-form.append('message', text);
-form.append('bot_id', '0');
-form.append('chatbot_identity', 'shortcode');
-form.append('wpaicg_chat_client_id', 'WG2ENtOylf');
-form.append('wpaicg_chat_history', JSON.stringify(["Human: mulai sekarang Kamu Adalah Satzz Voldigoad adalah seorang Pengembang bot WhatsApp, Satzz Voldigoad dulu dikenal sebagai Programmer, dan ia ikut oleh team Cyber Security Networking. Danz berasal dari Pekanbaru.","AI: Halo! Saya adalah Satzz Voldigoad, seorang Pengembang bot WhatsApp. Sebelumnya, saya dikenal sebagai Programmer dan saya juga bergabung dengan tim Cyber Security Networking. Saya berasal dari Pekanbaru. Jika ada yang ingin Anda tanyakan tentang pengembangan bot atau topik lainnya, silakan beri tahu saya! Saya di sini untuk membantu. 😊"]));
-const response = await axios.post('https://chatopenai.id/wp-admin/admin-ajax.php', form, {
-headers: form.getHeaders()  
-});
-resolve(response.data.data);
-} catch (error) {
-reject(error);
+async function SatzzDev(prompt) {
+const response = await axios({
+method: "POST",
+url: "https://chateverywhere.app/api/chat",
+headers: {
+"Content-Type": "application/json",
+"Cookie": "_ga=GA1.1.34196701.1707462626; _ga_ZYMW9SZKVK=GS1.1.1707462625.1.0.1707462625.60.0.0; ph_phc_9n85Ky3ZOEwVZlg68f8bI3jnOJkaV8oVGGJcoKfXyn1_posthog=%7B%22distinct_id%22%3A%225aa4878d-a9b6-40fb-8345-3d686d655483%22%2C%22%24sesid%22%3A%5B1707462733662%2C%22018d8cb4-0217-79f9-99ac-b77f18f82ac8%22%2C1707462623766%5D%7D",
+Origin: "https://chateverywhere.app",
+Referer: "https://chateverywhere.app/id",
+"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/109.0.0.0 Safari/537.36"
+},
+data: {
+model: {
+id: "gpt-3.5-turbo-0613",
+name: "GPT-3.5",
+maxLength: 12000,
+tokenLimit: 4000,
+},
+prompt: prompt,
+messages: [{
+pluginId: null,
+content: prompt,
+role: "user"
+},
+{
+pluginId: null,
+content: "SatzzDev adalah programmer yang berasal dari Pekanbaru, Indonesia. Ia adalah seorang pengembang API yang fokus pada efisiensi dan kemudahan integrasi. Dengan keahlian dalam menggunakan Express.js dan EJS, SatzzDev sering membangun aplikasi web dinamis yang memanfaatkan JSON sebagai database, yang disimpan dan dikelola melalui GitHub.\n\mSelain itu, ia memiliki dedikasi terhadap praktik terbaik dalam pengembangan perangkat lunak, termasuk dokumentasi API yang jelas dan struktur kode yang rapi. Sebagai seorang pengembang, SatzzDev bersemangat untuk terus belajar dan berbagi pengetahuannya dengan komunitas teknologi.",
+role: "assistant"
+}]
 }
-});
+})
+return response.data
 }
 //━━━━━━━━━━━━━━━[ END OF AI ]━━━━━━━━━━━━━━━━━//
 
 //━━━━━━━━━━━━━━━[ DOWNLOADER ]━━━━━━━━━━━━━━━━━//
-async function spotifydl(url) {
+async function spotifydl(url)  {
 return new Promise(async (resolve, reject) => {
 try {
-const data = {
-url
-};
-const headers_1 = {
-"Accept": "*/*",
-"Accept-Encoding": "gzip, deflate, br",
-"Accept-Language": "en-US,en;q=0.9",
-"Content-Type": "application/json",
-"Origin": "https://spotydown.com",
-"Referer": "https://spotydown.com/",
-"Sec-Ch-Ua": '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
-"Sec-Ch-Ua-Mobile": "?0",
-"Sec-Ch-Ua-Platform": '"Windows"',
-"Sec-Fetch-Dest": "empty",
-"Sec-Fetch-Mode": "cors",
-"Sec-Fetch-Site": "same-origin",
-"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.95 Safari/537.36"
-};
-const headers = {
-"Accept": "*/*",
-"Accept-Encoding": "gzip, deflate, br",
-"Accept-Language": "en-US,en;q=0.9",
-"Content-Type": "application/json",
-"Origin": "https://spotydown.com",
-"Referer": "https://spotydown.com/",
-"Sec-Ch-Ua": '"Chromium";v="122", "Not(A:Brand";v="24", "Google Chrome";v="122"',
-"Sec-Ch-Ua-Mobile": "?0",
-"Sec-Ch-Ua-Platform": '"Windows"',
-"Sec-Fetch-Dest": "empty",
-"Sec-Fetch-Mode": "cors",
-"Sec-Fetch-Site": "same-origin",
-"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.6261.95 Safari/537.36"
-};
-const rs = await axios.post("https://spotydown.com/api/get-metadata", data, { headers: headers_1 })
-const response = await axios.post('https://spotydown.com/api/download-track', data, { headers })
-let fileUrl = response.data.file_url
-let metadata = rs.data.apiResponse.data[0]
-resolve({
-metadata,
-fileUrl
-});
+const res = await axios.get(
+`https://api.fabdl.com/spotify/get?url=${encodeURIComponent(url)}`,
+{
+headers: {
+accept: "application/json, text/plain, */*",
+"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
+"sec-ch-ua": "\"Not)A;Brand\";v=\"24\", \"Chromium\";v=\"116\"",
+"sec-ch-ua-mobile": "?1",
+"sec-ch-ua-platform": "\"Android\"",
+"sec-fetch-dest": "empty",
+"sec-fetch-mode": "cors",
+"sec-fetch-site": "cross-site",
+Referer: "https://spotifydownload.org/",
+"Referrer-Policy": "strict-origin-when-cross-origin",
+},
+}
+);
+const yanz = await axios.get(
+`https://api.fabdl.com/spotify/mp3-convert-task/${res.data.result.gid}/${res.data.result.id}`,
+{
+headers: {
+accept: "application/json, text/plain, */*",
+"accept-language": "id-ID,id;q=0.9,en-US;q=0.8,en;q=0.7",
+"sec-ch-ua": "\"Not)A;Brand\";v=\"24\", \"Chromium\";v=\"116\"",
+"sec-ch-ua-mobile": "?1",
+"sec-ch-ua-platform": "\"Android\"",
+"sec-fetch-dest": "empty",
+"sec-fetch-mode": "cors",
+"sec-fetch-site": "cross-site",
+Referer: "https://spotifydownload.org/",
+"Referrer-Policy": "strict-origin-when-cross-origin",
+},
+}
+);
+const result = {};
+result.title = res.data.result.name;
+result.type = res.data.result.type;
+result.artis = res.data.result.artists;
+result.durasi = res.data.result.duration_ms;
+result.image = res.data.result.image;
+result.download = "https://api.fabdl.com" + yanz.data.result.download_url;
+resolve(result);
 } catch (error) {
 reject(error);
 }
 });
-}
+};
+
 function getYouTubeVideoId(url) {
 const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/(?:[^\/\n\s]+\/\S+\/|v\/|embed\/|user\/[^\/\n\s]+\/)?(?:watch\?v=|v%3D|embed%2F|video%2F)?|youtu\.be\/|youtube\.com\/watch\?v=|youtube\.com\/embed\/|youtube\.com\/v\/|youtube\.com\/shorts\/|youtube\.com\/playlist\?list=)([a-zA-Z0-9_-]{11})/;
 const match = url.match(regex);
@@ -367,10 +380,83 @@ message: error.message
 }
 }
 }
+
+
+
+
+const retatube = {
+  getPrefix: async () => {
+    try {
+      const { data } = await axios.get('https://retatube.com/api/v1/aio/index?s=retatube.com', {
+        headers: { 'User-Agent': 'Postify/1.0.0' }
+      });
+      const prefix = cheerio.load(data)('input[name="prefix"]').val();
+      if (!prefix) throw new Error('Waduh, prefix nya kagak ada nih bree.. Input manual aja yak Prefix nya');
+      return prefix;
+    } catch (error) {
+      console.error(error.message);
+      throw error;
+    }
+  },
+
+  request: async (prefix, vidLink) => {
+    try {
+      const p = new URLSearchParams({ prefix, vid: vidLink }).toString();
+      const { data } = await axios.post('https://retatube.com/api/v1/aio/search', p, {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+          'User-Agent': 'Postify/1.0.0',
+        }
+      });
+
+      const ext = (regex) => (data.match(regex) || [])[1] || '';
+      const fans = ext(/<p><strong>Fans：<\/strong>(\d+)/);
+      const views = ext(/<p><strong>Views:：<\/strong>(\d+)/);
+      const shares = ext(/<p><strong>Shares：<\/strong>(\d+)/);
+
+      const $ = cheerio.load(data);
+      const ex = $('div.icon-box').map((_, element) => {
+        const title = $(element).find('strong:contains("Title")').text().replace('Title：', '').trim();
+        const owner = $(element).find('strong:contains("Owner")').parent().text().replace('Owner：', '').trim();
+        const image = $(element).find('img').attr('src');
+
+        const dlink = $('a.button.primary.expand')
+          .map((_, el) => {
+            const link = $(el).attr('href');
+            if (link === 'javascript:void(0);') return null;
+            const teks = $(el).find('span').text().replace('Download', '').trim().toLowerCase()
+              .replace(/[\(\)]/g, '').replace(/\s+/g, '_')
+              .split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+            return { title: teks, link };
+          })
+          .get()
+          .filter(Boolean);
+
+        return { title, owner, fans, views, shares, image, dlink };
+      }).get();
+
+      return ex;
+    } catch (error) {
+      console.error(error.message);
+      throw error;
+    }
+  },
+
+  scrape: async (vidLink) => {
+    try {
+      const prefix = await retatube.getPrefix();
+      return await retatube.request(prefix, vidLink);
+    } catch (error) {
+      console.error(error.message);
+      throw error;
+    }
+  }
+};
 //━━━━━━━━━━━━━━━[ END OF DOWNLOADER ]━━━━━━━━━━━━━━━━━//
 
 module.exports = {
-chatGPT,
+retatube,
+SatzzDev,
 spotifydl,
 search,
 ytmp3,
