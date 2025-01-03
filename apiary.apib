@@ -1,0 +1,224 @@
+FORMAT: 1A
+
+# API Documentation
+
+# Group AI
+
+## AI Satzz [GET /ai/satzz]
+
+Retrieve response from ChatGPT-based AI.
+
++ Parameters
+    + text (string, required) - The text query for the AI.
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "creator": "@krniwnstria",
+            "response": "AI response text."
+        }
+
++ Response 400 (application/json)
+
+        {
+            "creator": "@krniwnstria",
+            "status": false,
+            "msg": "[!] Parameter text required"
+        }
+
+# Group Download
+
+## Instagram [GET /instagram]
+
+Download content from Instagram.
+
++ Parameters
+    + url (string, required) - URL of the Instagram post.
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "creator": "@krniwnstria",
+            "data": {
+                "content": "Instagram content details."
+            }
+        }
+
++ Response 400 (application/json)
+
+        {
+            "creator": "@krniwnstria",
+            "status": false,
+            "msg": "[!] Parameter url required"
+        }
+
+## YouTube Search [GET /ytsearch]
+
+Search for videos on YouTube.
+
++ Parameters
+    + query (string, required) - Search query text.
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "creator": "@krniwnstria",
+            "results": [
+                {
+                    "title": "Video title",
+                    "url": "Video URL"
+                }
+            ]
+        }
+
++ Response 400 (application/json)
+
+        {
+            "creator": "@krniwnstria",
+            "status": false,
+            "msg": "[!] Parameter query required"
+        }
+
+## YouTube Transcript [GET /yttranscript]
+
+Get video transcript from YouTube.
+
++ Parameters
+    + yt_url (string, required) - YouTube video URL.
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "creator": "@krniwnstria",
+            "transcript": "Transcript text"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "creator": "@krniwnstria",
+            "status": false,
+            "msg": "[!] Parameter yt_url required"
+        }
+
+## YouTube MP3 Download [GET /ytmp3]
+
+Download audio from YouTube as MP3.
+
++ Parameters
+    + url (string, required) - YouTube video URL.
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "creator": "@krniwnstria",
+            "data": "MP3 file details"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "creator": "@krniwnstria",
+            "status": false,
+            "msg": "[!] Parameter url required"
+        }
+
+## YouTube MP4 Download [GET /ytmp4]
+
+Download video from YouTube as MP4.
+
++ Parameters
+    + url (string, required) - YouTube video URL.
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "creator": "@krniwnstria",
+            "data": "MP4 file details"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "creator": "@krniwnstria",
+            "status": false,
+            "msg": "[!] Parameter url required"
+        }
+
+## Spotify Download [GET /spotifydl]
+
+Download audio from Spotify.
+
++ Parameters
+    + url (string, required) - Spotify track URL.
+
++ Response 200 (application/json)
+
+        {
+            "status": true,
+            "creator": "@krniwnstria",
+            "data": "Spotify track details"
+        }
+
++ Response 400 (application/json)
+
+        {
+            "creator": "@krniwnstria",
+            "status": false,
+            "msg": "[!] Parameter url required"
+        }
+
+# Group Image Processing
+
+## Brat Image [GET /brat]
+
+Generate an image using the Brat service.
+
++ Parameters
+    + text (string, required) - Text to include in the image.
+
++ Response 200 (image/webp)
+
+    (Image file returned as a buffer.)
+
++ Response 400 (application/json)
+
+        {
+            "creator": "@krniwnstria",
+            "status": false,
+            "msg": "[!] Parameter text required"
+        }
+
+# Group Lyrics
+
+## Fetch Lyrics [GET /lirik]
+
+Fetch song lyrics by artist and title.
+
++ Parameters
+    + artist (string, required) - Name of the artist.
+    + title (string, required) - Title of the song.
+
++ Response 200 (application/json)
+
+        {
+            "lyrics": "Song lyrics text."
+        }
+
++ Response 400 (application/json)
+
+        {
+            "error": "Artist and title are required."
+        }
+
++ Response 500 (application/json)
+
+        {
+            "error": "Failed to fetch lyrics."
+        }
