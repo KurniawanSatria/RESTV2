@@ -126,5 +126,21 @@ res.send(buffer);
 }
 });
 
+router.get('/lirik', async (req, res) => {
+  const { artist, title } = req.query; // Mengambil parameter dari query string
+
+  if (!artist || !title) {
+    return res.status(400).json({ error: 'Artist and title are required' });
+  }
+
+  try {
+    const response = await axios.get(`https://api.lyrics.ovh/v1/${encodeURIComponent(artist)}/${encodeURIComponent(title)}`);
+    res.json(response.data);
+  } catch (error) {
+    console.error('Error fetching lyrics:', error.message);
+    res.status(500).json({ error: 'Failed to fetch lyrics' });
+  }
+});
+
 
 module.exports = router; 

@@ -22,7 +22,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.render('index');
+  res.redirect('https://satzzdev.docs.apiary.io/');
 });
 
 app.get("/audio", (req, res) => {
